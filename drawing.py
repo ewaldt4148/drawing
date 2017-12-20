@@ -24,7 +24,8 @@ for i in range(50):
     r = random.randrange(5, 10)
     s = [x, y, r, r]
     dec.append(s)
-    
+
+
 # Colors
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -68,9 +69,13 @@ while not done:
     for s in dec:
         pygame.draw.ellipse(screen, clrs_list[random.randint(0,2)], s)
         
-    pygame.draw.polygon(screen, WALL, [[400, 100], [500, 500], [300, 500]])
+    pygame.draw.polygon(screen, WALL, [[280, 100], [400, 100], [325, 400],[280,400]])
+    pygame.draw.polygon(screen, WALL, [[600, 100], [400, 100], [476, 400],[600,400]])
+    pygame.draw.polygon(screen, CARPET, [[500, 500], [476, 400], [600,400], [600, 500]])
+    pygame.draw.polygon(screen, CARPET, [[325, 400], [300, 500], [280,400], [280, 500]])
 
-
+    '''window'''
+    pygame.draw.rect(screen, BLACK, [500, 120, 100, 150])
     
 
 
