@@ -18,7 +18,7 @@ refresh_rate = 60
 
 
 dec = []
-for i in range(50):
+for i in range(70):
     x = random.randrange(300, 500)
     y = random.randrange(100, 500)
     r = random.randrange(5, 10)
@@ -33,6 +33,14 @@ for i in range(11):
     f = [x, y, r, r]
     snow.append(f)
 
+light = []
+for i in range(120):
+    x = random.randrange(0, 800)
+    y = random.randrange(20,21 )
+    r = random.randrange(5, 10)
+    l = [x, y, r, r]
+    light.append(l)
+
 # Colors
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -43,10 +51,13 @@ ORANGE = (255, 125 , 0)
 BROWN = (122, 48, 8)
 CARPET = (39, 26, 12)
 WALL = (255, 244, 198)
-DOOR = (77, 51, 25)
+INNER = (77, 51, 25)
+DOOR = (61, 22, 0)
 SKY = (153, 204, 255)
+
 STAR = (255,215,0)
 clrs_list = [RED, WHITE, BLUE, ORANGE, WHITE]
+lights_list = [RED, GREEN, WHITE]
 
 
 #doll house
@@ -58,7 +69,13 @@ done = False
 def lights(x):
     pygame.draw.arc(screen, ORANGE, [x, -25, 70, 50], math.pi, 2*math.pi, 4)
     
-        
+def rug(x, y):
+    pygame.draw.ellipse(screen, RED, [x, y, 300, 100])
+    pygame.draw.ellipse(screen, BLUE, [(x+50), y, 200, 100])
+    pygame.draw.ellipse(screen, WHITE, [(x+100), y, 100, 100])
+
+
+
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -76,16 +93,22 @@ while not done:
         for y in range(0, 400, 10):
             brick = x, y, 15, 10
             pygame.draw.rect(screen, WHITE, brick, 1)
-
+    pygame.draw.rect(screen, RED, [700, 300, 100, 100])
+    pygame.draw.arc(screen, BLACK, [700, 325, 100, 150], 0 , math.pi, 50)
+     
     '''rug'''
-    pygame.draw.ellipse(screen, RED, [250, 500, 300, 100])
-    pygame.draw.ellipse(screen, BLUE, [300, 500, 200, 100])
-    pygame.draw.ellipse(screen, WHITE, [350, 500, 100, 100])
-
-
+    rug(250, 500)
+    
     '''door'''
     pygame.draw.rect(screen, DOOR, [100, 150, 150, 250])
     pygame.draw.rect(screen, WHITE, [100, 150, 150, 250],10)
+    pygame.draw.rect(screen, BLACK, [120, 170, 110, 100],5)
+    pygame.draw.rect(screen, BLACK, [120, 285, 110, 100],5)
+    pygame.draw.rect(screen, BLACK, [130, 180, 90, 80],5)
+    pygame.draw.rect(screen, BLACK, [130, 295, 90, 80],5)
+    pygame.draw.rect(screen, BLACK, [130, 290, 1, 100],5)
+    pygame.draw.ellipse(screen, WHITE, [230, 275, 10, 10])
+
     '''tree'''
     pygame.draw.polygon(screen, GREEN, [[400, 100], [500, 500], [300, 500]])
     pygame.draw.rect(screen, BROWN, [360, 500, 80, 50])
@@ -111,11 +134,12 @@ while not done:
     '''lights'''
     for x in range(1,800,70):
         pygame.draw.arc(screen, BLACK, [x, -25, 70, 50], math.pi, 2*math.pi, 4)
-
-
+    for l in light:
+        pygame.draw.ellipse(screen, lights_list[random.randint(0,2)], l)
     '''star'''
     star(390,100)
 
+    
 
 
 
